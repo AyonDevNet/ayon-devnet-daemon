@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 26% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 20% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 20% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 195 100% 50%;
+    --primary-foreground: 220 26% 4%;
+
+    --secondary: 145 100% 50%;
+    --secondary-foreground: 220 26% 4%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 195 100% 50%;
+    --accent-foreground: 220 26% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 195 100% 50%;
+
+    --radius: 0.5rem;
+
+    /* Custom tech-themed tokens */
+    --electric-blue: 195 100% 50%;
+    --neon-green: 145 100% 50%;
+    --cyber-cyan: 180 100% 50%;
+    --tech-glow: 195 100% 60%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(195 100% 50% / 0.1), hsl(145 100% 50% / 0.1));
+    --gradient-card: linear-gradient(180deg, hsl(220 20% 8%), hsl(220 20% 6%));
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(195 100% 50% / 0.3);
+    --shadow-card: 0 4px 20px hsl(220 26% 2% / 0.5);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Glow effects */
+  .glow-text {
+    text-shadow: 0 0 20px hsl(var(--electric-blue) / 0.5);
+  }
+
+  .glow-border {
+    box-shadow: 0 0 20px hsl(var(--electric-blue) / 0.3);
+  }
+
+  /* Typing cursor animation */
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .typing-cursor::after {
+    content: '|';
+    color: hsl(var(--electric-blue));
+    animation: blink 1s infinite;
+    margin-left: 4px;
+  }
+
+  /* Typewriter animation */
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  .typewriter {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 3px solid hsl(var(--electric-blue));
+    white-space: nowrap;
+    animation: 
+      typing 3.5s steps(22) 1s 1 normal both,
+      blink 1s 4.5s infinite;
+  }
+
+  /* Network flow lines */
+  @keyframes flow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .flow-line {
+    animation: flow 3s linear infinite;
+  }
+}
