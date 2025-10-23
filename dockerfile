@@ -20,3 +20,40 @@ EXPOSE 3000
 # Serve the static build using 'serve'
 RUN npm install -g serve
 CMD ["serve", "-s", "dist", "-l", "3000"]
+
+
+##those are multi-satges
+# Stage 1: Build (using Node Alpine)
+#FROM node:18-alpine AS builder
+
+# Install build tools (optional, only if your dependencies need compiling)
+##RUN apk add --no-cache python3 make g++
+
+##WORKDIR /app
+
+# Copy package files and install dependencies
+COPY package*.json ./
+##RUN npm ci --only=production
+
+# Copy project files and build
+##COPY . .
+##RUN npm run build
+
+# Stage 2: Runtime (minimal Alpine)
+##FROM node:18-alpine
+
+##WORKDIR /app
+
+# Install 'serve' to host the static files
+##RUN npm install -g serve && npm cache clean --force
+
+# Copy built files from builder stage
+##COPY --from=builder /app/dist ./dist
+
+# Expose port 3000
+##EXPOSE 3000
+
+# Run the server
+##CMD ["serve", "-s", "dist", "-l", "3000"]
+
+
